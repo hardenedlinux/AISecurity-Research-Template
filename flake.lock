@@ -1,0 +1,126 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1605370193,
+        "narHash": "sha256-YyMTf3URDL/otKdKgtoMChu4vfVL3vCMkRqpGifhUn0=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5021eac20303a61fafe17224c087f5519baed54d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "julia_15": {
+      "locked": {
+        "lastModified": 1607560137,
+        "narHash": "sha256-qI5U28r9Ie11OlkwzNFkhW0Z4jLanntJdb3JeFq/85A=",
+        "path": "/nix/store/av7yj690m440xkzq5rjgsspla91dajp6-source",
+        "rev": "7ff5e241a2b96fff7912b7d793a06b4374bd846c",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "jupyterWith": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1607561353,
+        "narHash": "sha256-BwSWWnc9hdULHU8PJcNBPmOxmZk8VSDCrQjALkrfprQ=",
+        "owner": "GTrunSec",
+        "repo": "jupyterWith",
+        "rev": "94f2247dd741652525203bc853ace77fd6a64a19",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GTrunSec",
+        "ref": "Nov",
+        "repo": "jupyterWith",
+        "type": "github"
+      }
+    },
+    "jupyterWith-overlay": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1608795209,
+        "narHash": "sha256-dAAUmT0qqPp5EMjNXT873hUflR8oAbRloekFI0Q5K9E=",
+        "owner": "GTrunSec",
+        "repo": "Jupyter-data-science-environment",
+        "rev": "570200a16166b49c1c2e4b55f613bec78da7c7ce",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GTrunSec",
+        "ref": "master",
+        "repo": "Jupyter-data-science-environment",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1601419125,
+        "narHash": "sha256-nWl+LD6H5IcEQ8SFuE7U8RAyYyOOlSJ/Cojs9kGckHU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "703f052de185c3dd1218165e62b105a68e05e15f",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "rev": "703f052de185c3dd1218165e62b105a68e05e15f",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs-hardenedlinux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1607030866,
+        "narHash": "sha256-0Jel00AzgyMrrnh2yNY+ouMPEaDPkvcHxkh1wrkJ/VQ=",
+        "owner": "hardenedlinux",
+        "repo": "nixpkgs-hardenedlinux",
+        "rev": "dbc6289f72e419a3535d3399f557801795a22663",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hardenedlinux",
+        "ref": "master",
+        "repo": "nixpkgs-hardenedlinux",
+        "type": "github"
+      }
+    },
+    "python37": {
+      "locked": {
+        "lastModified": 1592174545,
+        "narHash": "sha256-j+udoeEnrsRN8kl9/d7iK1ZRDOGhFqj/HW8A5Br4IZA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4c67f879f0ee0f4eb610373e479a0a9c518c51c4",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "rev": "4c67f879f0ee0f4eb610373e479a0a9c518c51c4",
+        "type": "indirect"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "julia_15": "julia_15",
+        "jupyterWith": "jupyterWith",
+        "jupyterWith-overlay": "jupyterWith-overlay",
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-hardenedlinux": "nixpkgs-hardenedlinux",
+        "python37": "python37"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
