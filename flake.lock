@@ -2,11 +2,11 @@
   "nodes": {
     "flake-utils": {
       "locked": {
-        "lastModified": 1605370193,
-        "narHash": "sha256-YyMTf3URDL/otKdKgtoMChu4vfVL3vCMkRqpGifhUn0=",
+        "lastModified": 1614513358,
+        "narHash": "sha256-LakhOx3S1dRjnh0b5Dg3mbZyH0ToC9I8Y2wKSkBaTzU=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "5021eac20303a61fafe17224c087f5519baed54d",
+        "rev": "5466c5bbece17adaab2d82fae80b46e807611bf3",
         "type": "github"
       },
       "original": {
@@ -15,76 +15,83 @@
         "type": "github"
       }
     },
-    "julia_15": {
+    "flake-utils_2": {
       "locked": {
-        "lastModified": 1607560137,
-        "narHash": "sha256-qI5U28r9Ie11OlkwzNFkhW0Z4jLanntJdb3JeFq/85A=",
-        "path": "/nix/store/av7yj690m440xkzq5rjgsspla91dajp6-source",
-        "rev": "7ff5e241a2b96fff7912b7d793a06b4374bd846c",
-        "type": "path"
+        "lastModified": 1601282935,
+        "narHash": "sha256-WQAFV6sGGQxrRs3a+/Yj9xUYvhTpukQJIcMbIi7LCJ4=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "588973065fce51f4763287f0fda87a174d78bf48",
+        "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
       }
     },
     "jupyterWith": {
       "flake": false,
       "locked": {
-        "lastModified": 1607561353,
-        "narHash": "sha256-BwSWWnc9hdULHU8PJcNBPmOxmZk8VSDCrQjALkrfprQ=",
+        "lastModified": 1616356889,
+        "narHash": "sha256-KtWTgbZAdUA1dfCtqHB2nuYR0b3LbY6gyy4yQclfb38=",
         "owner": "GTrunSec",
         "repo": "jupyterWith",
-        "rev": "94f2247dd741652525203bc853ace77fd6a64a19",
+        "rev": "3e71ff0a0d2485a682598bac0399c23a570a948f",
         "type": "github"
       },
       "original": {
         "owner": "GTrunSec",
-        "ref": "Nov",
+        "ref": "Mar",
         "repo": "jupyterWith",
         "type": "github"
       }
     },
-    "jupyterWith-overlay": {
-      "flake": false,
+    "mach-nix": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pypi-deps-db": "pypi-deps-db"
+      },
       "locked": {
-        "lastModified": 1608795209,
-        "narHash": "sha256-dAAUmT0qqPp5EMjNXT873hUflR8oAbRloekFI0Q5K9E=",
-        "owner": "GTrunSec",
-        "repo": "Jupyter-data-science-environment",
-        "rev": "570200a16166b49c1c2e4b55f613bec78da7c7ce",
+        "lastModified": 1615528021,
+        "narHash": "sha256-FSzp2qrHMhyiVr7K2wGdBeqf5HWGDCouuCYGNqgZD2I=",
+        "owner": "DavHau",
+        "repo": "mach-nix",
+        "rev": "ac62255e8112e547432ca0f09bfe8f4d1920fbb8",
         "type": "github"
       },
       "original": {
-        "owner": "GTrunSec",
-        "ref": "master",
-        "repo": "Jupyter-data-science-environment",
+        "owner": "DavHau",
+        "repo": "mach-nix",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1601419125,
-        "narHash": "sha256-nWl+LD6H5IcEQ8SFuE7U8RAyYyOOlSJ/Cojs9kGckHU=",
+        "lastModified": 1613811791,
+        "narHash": "sha256-qfCT5ym6id/LKLc9YlxcGi1JC7tNaCX46AGoY1sDydI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "703f052de185c3dd1218165e62b105a68e05e15f",
+        "rev": "04f436940c85b68a5dc6b69d93a9aa542cf3bf6c",
         "type": "github"
       },
       "original": {
         "id": "nixpkgs",
-        "rev": "703f052de185c3dd1218165e62b105a68e05e15f",
+        "rev": "04f436940c85b68a5dc6b69d93a9aa542cf3bf6c",
         "type": "indirect"
       }
     },
     "nixpkgs-hardenedlinux": {
       "flake": false,
       "locked": {
-        "lastModified": 1607030866,
-        "narHash": "sha256-0Jel00AzgyMrrnh2yNY+ouMPEaDPkvcHxkh1wrkJ/VQ=",
+        "lastModified": 1616287981,
+        "narHash": "sha256-jo5iR0vfAkf3n4f7748pJEPc3Q5yF+1dlVhd27EH6rE=",
         "owner": "hardenedlinux",
         "repo": "nixpkgs-hardenedlinux",
-        "rev": "dbc6289f72e419a3535d3399f557801795a22663",
+        "rev": "e9d8c8c25ca96db47ab525499a44709c5dc7e611",
         "type": "github"
       },
       "original": {
@@ -94,30 +101,29 @@
         "type": "github"
       }
     },
-    "python37": {
+    "pypi-deps-db": {
+      "flake": false,
       "locked": {
-        "lastModified": 1592174545,
-        "narHash": "sha256-j+udoeEnrsRN8kl9/d7iK1ZRDOGhFqj/HW8A5Br4IZA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "4c67f879f0ee0f4eb610373e479a0a9c518c51c4",
+        "lastModified": 1615363940,
+        "narHash": "sha256-GJ3ONLWAr5ejqR5bKVfKpI/n+ClaxjyYewMP+QJyq5M=",
+        "owner": "DavHau",
+        "repo": "pypi-deps-db",
+        "rev": "ab522f2d3255789f1ef97fa7c83d4342be156e67",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "rev": "4c67f879f0ee0f4eb610373e479a0a9c518c51c4",
-        "type": "indirect"
+        "owner": "DavHau",
+        "repo": "pypi-deps-db",
+        "type": "github"
       }
     },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "julia_15": "julia_15",
         "jupyterWith": "jupyterWith",
-        "jupyterWith-overlay": "jupyterWith-overlay",
+        "mach-nix": "mach-nix",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-hardenedlinux": "nixpkgs-hardenedlinux",
-        "python37": "python37"
+        "nixpkgs-hardenedlinux": "nixpkgs-hardenedlinux"
       }
     }
   },

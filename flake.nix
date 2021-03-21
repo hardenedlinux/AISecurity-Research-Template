@@ -1,43 +1,39 @@
 {
   description = "Data Science Environment";
-  # nixConfig = {
-  #   substituters = [
-  #     "http://221.4.35.244:8301/"
-  #   ];
-  #   trusted-public-keys = [
-  #     "221.4.35.244:3ehdeUIC5gWzY+I7iF3lrpmxOMyEZQbZlcjOmlOVpeo="
-  #   ];
-  # };
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "nixpkgs/703f052de185c3dd1218165e62b105a68e05e15f";
-    julia_15.url = "nixpkgs";
-    python37.url = "nixpkgs/4c67f879f0ee0f4eb610373e479a0a9c518c51c4"; #python3.7 tensorflow_2
+    nixpkgs.url = "nixpkgs/04f436940c85b68a5dc6b69d93a9aa542cf3bf6c";
+    mach-nix = { url = "github:DavHau/mach-nix"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs-hardenedlinux = { url = "github:hardenedlinux/nixpkgs-hardenedlinux/master"; flake = false; };
-    jupyterWith = { url = "github:GTrunSec/jupyterWith/Nov"; flake = false; };
-    jupyterWith-overlay = { url = "github:GTrunSec/Jupyter-data-science-environment/master"; flake = false; };
+    jupyterWith = { url = "github:GTrunSec/jupyterWith/Mar"; flake = false; };
   };
 
-  outputs = inputs@{ self, nixpkgs, flake-utils, nixpkgs-hardenedlinux, jupyterWith, python37, julia_15, jupyterWith-overlay }:
-    (flake-utils.lib.eachDefaultSystem
+  outputs = inputs@{ self, nixpkgs, flake-utils, nixpkgs-hardenedlinux, jupyterWith, mach-nix }:
+    (flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ]
       (system:
         let
+          machlib = import mach-nix
+            {
+              pypiDataRev = "2205d5a0fc9b691e7190d18ba164a3c594570a4b";
+              pypiDataSha256 = "1aaylax7jlwsphyz3p73790qbrmva3mzm56yf5pbd8hbkaavcp9g";
+              python = "python38";
+            };
           pkgs = import nixpkgs {
-            system = "x86_64-linux";
+            inherit system;
             overlays = [
-              (import (jupyterWith-overlay + "/overlays/python-overlay.nix"))
-              (import (jupyterWith-overlay + "/overlays/package-overlay.nix"))
-              (import (jupyterWith-overlay + "/overlays/julia-overlay.nix"))
+              (import (jupyterWith + "/nix/python-overlay.nix"))
               (import (nixpkgs-hardenedlinux + "/nix/python-packages-overlay.nix"))
             ];
-             config = { allowBroken = true; allowUnfree = true; allowUnsupportedSystem = true;
-                     };
+            config = {
+              allowUnfree = true;
+              allowUnsupportedSystem = true;
+            };
           };
         in
-          {
-            devShell = import ./devShell.nix { inherit pkgs nixpkgs-hardenedlinux jupyterWith;};
-          }
+        {
+          devShell = import ./devShell.nix { inherit pkgs nixpkgs-hardenedlinux jupyterWith; mach-nix = machlib; };
+        }
       )
     );
 }
