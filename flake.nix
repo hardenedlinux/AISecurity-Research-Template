@@ -5,11 +5,12 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "nixpkgs/04f436940c85b68a5dc6b69d93a9aa542cf3bf6c";
     mach-nix = { url = "github:DavHau/mach-nix"; inputs.nixpkgs.follows = "nixpkgs"; };
+    flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
     nixpkgs-hardenedlinux = { url = "github:hardenedlinux/nixpkgs-hardenedlinux/master"; flake = false; };
     jupyterWith = { url = "github:GTrunSec/jupyterWith/Mar"; flake = false; };
   };
 
-  outputs = inputs@{ self, nixpkgs, flake-utils, nixpkgs-hardenedlinux, jupyterWith, mach-nix }:
+  outputs = inputs@{ self, nixpkgs, flake-utils, nixpkgs-hardenedlinux, jupyterWith, flake-compat, mach-nix }:
     (flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ]
       (system:
         let
