@@ -43,6 +43,5 @@ pkgs.mkShell rec {
   ];
 
   shellHook = ''
-    ${jupyterEnvironment}/bin/jupyter-lab
   '';
 }
