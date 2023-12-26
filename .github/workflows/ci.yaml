@@ -1,0 +1,24 @@
+name: "CI"
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  jupyenv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: "recursive"
+
+      - name: Setup
+        uses: ./.github/actions/common-setup
+        with:
+          SECRET_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: jupyenv-example
+        run: |
+          nix profile install nixpkgs#tectonic
+          nix develop ./nix/std -c just jupyterlab example build
