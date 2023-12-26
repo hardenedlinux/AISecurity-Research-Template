@@ -1,0 +1,26 @@
+project:
+  type: book
+  output-dir: ./publish
+
+book:
+  title: "AISecurity-Research-Template"
+  language: "en"
+  author: "Guangtao Zhang"
+  reader-mode: true
+  chapters:
+    - index.qmd
+
+    - part: example.ipynb
+
+format:
+  html:
+    theme: cosmo
+    code-fold: true
+  pdf:
+    documentclass: ctexbook
+    pdf-engine: tectonic
+
+execute:
+  warning: false
+
+biliography: references.lib

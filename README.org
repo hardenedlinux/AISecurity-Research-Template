@@ -1,7 +1,0 @@
-#+TITLE: Hardenedlinux Jupyter Lab
-
-- Quickly run
-
-#+begin_src sh :async t :exports both :results output
-nix develop github:hardenedlinux/hardenedlinux-jupyter-lab --impure -c jupyter-lab --ip <IP>
-#+end_src

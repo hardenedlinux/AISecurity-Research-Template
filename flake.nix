@@ -1,40 +1,46 @@
 {
-  description = "Data Science Environment";
+  description = "My flake with dream2nix packages";
 
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "nixpkgs/04f436940c85b68a5dc6b69d93a9aa542cf3bf6c";
-    mach-nix = { url = "github:DavHau/mach-nix"; inputs.nixpkgs.follows = "nixpkgs"; };
-    flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
-    nixpkgs-hardenedlinux = { url = "github:hardenedlinux/nixpkgs-hardenedlinux/master"; flake = false; };
-    jupyterWith = { url = "github:GTrunSec/jupyterWith/Mar"; flake = false; };
+    dream2nix.url = "github:nix-community/dream2nix";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs = inputs@{ self, nixpkgs, flake-utils, nixpkgs-hardenedlinux, jupyterWith, flake-compat, mach-nix }:
-    (flake-utils.lib.eachSystem [ "x86_64-linux" "x86_64-darwin" ]
-      (system:
-        let
-          machlib = import mach-nix
-            {
-              pypiDataRev = "2205d5a0fc9b691e7190d18ba164a3c594570a4b";
-              pypiDataSha256 = "1aaylax7jlwsphyz3p73790qbrmva3mzm56yf5pbd8hbkaavcp9g";
-              python = "python38";
-            };
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [
-              (import (jupyterWith + "/nix/python-overlay.nix"))
-              (import (nixpkgs-hardenedlinux + "/nix/python-packages-overlay.nix"))
+  outputs =
+    inputs@{
+      self,
+      dream2nix,
+      nixpkgs,
+      ...
+    }:
+    let
+      eachSystem = nixpkgs.lib.genAttrs [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
+    in
+    {
+      # All packages defined in ./packages/<name> are automatically added to the flake outputs
+      # e.g., 'packages/hello/default.nix' becomes '.#packages.hello'
+      devShells = eachSystem (
+        system: { default = self.packages.${system}.default.devShell; }
+      );
+      packages = eachSystem (
+        system: {
+          default = dream2nix.lib.evalModules {
+            packageSets.nixpkgs = inputs.nixpkgs.legacyPackages.${system};
+            modules = [
+              ./nix/my-project.nix
+              {
+                paths.projectRoot = ./.;
+                # can be changed to ".git" or "flake.nix" to get rid of .project-root
+                paths.projectRootFile = "flake.nix";
+                paths.package = "./my_project";
+              }
             ];
-            config = {
-              allowUnfree = true;
-              allowUnsupportedSystem = true;
-            };
           };
-        in
-        {
-          devShell = import ./devShell.nix { inherit pkgs nixpkgs-hardenedlinux jupyterWith; mach-nix = machlib; };
         }
-      )
-    );
+      );
+    };
 }

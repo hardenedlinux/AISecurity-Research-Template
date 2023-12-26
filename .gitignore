@@ -1,0 +1,14 @@
+.DS_Store
+.idea
+*.log
+tmp/
+
+/.pdm-python
+/.data
+/.jupyter
+/.local
+
+# nixago: ignore-linked-files
+/.conform.yaml
+/lefthook.yml
+/treefmt.toml
