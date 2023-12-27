@@ -19,11 +19,16 @@ in
 
   kernel.python.data-science = {
     enable = true;
+    runtimePackages = [
+      pkgs.just
+      pkgs.bashInteractive
+      pkgs.d2
+    ];
     env = inputs.main.devShells.default.passthru.pythonEnv;
   };
   kernel.bash.data-science = {
     enable = true;
-    runtimePackages = [ pkgs.d2 ];
+    runtimePackages = [ ];
   };
   kernel.julia.data-science = {
     enable = true;

@@ -1,2 +1,11 @@
 # Getting Started
 
+
+
+```{python kernel="python-data-science"}
+#| code-fold: true
+
+from IPython.core.display import SVG
+
+SVG(filename='flow.svg')
+```
