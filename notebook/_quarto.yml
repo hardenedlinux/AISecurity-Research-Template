@@ -10,14 +10,18 @@ book:
   chapters:
     - index.qmd
 
-    - part: example.ipynb
+    - julia.qmd
+    - part: julia-test.ipynb
+
+    - python.qmd
+    - part: python-test.ipynb
 
 format:
   html:
     theme: cosmo
     code-fold: true
   pdf:
-    documentclass: ctexbook
+    # documentclass: ctexbook
     pdf-engine: tectonic
 
 execute:

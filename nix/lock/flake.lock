@@ -1,6 +1,43 @@
 {
   "nodes": {
-    "root": {}
+    "juliaRegistry": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1703593101,
+        "narHash": "sha256-Pd/sn2vfO256rCni9FT+y+HbeJ9M/WRu58ZOqSoyP4Q=",
+        "owner": "CodeDownIO",
+        "repo": "General",
+        "rev": "02bcc76278b8705a12f80ac7d852e9ee24233a5d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "CodeDownIO",
+        "repo": "General",
+        "type": "github"
+      }
+    },
+    "nixpkgs-julia": {
+      "locked": {
+        "lastModified": 1703652776,
+        "narHash": "sha256-opMGWB4rIkyv9SYZslsblBE4tmP/0GrKoq4/OHa/2sE=",
+        "owner": "GTrunSec",
+        "repo": "nixpkgs",
+        "rev": "22efeecfb3758995af1c7ce2fae2db7902cbe5a8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GTrunSec",
+        "ref": "julia",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "juliaRegistry": "juliaRegistry",
+        "nixpkgs-julia": "nixpkgs-julia"
+      }
+    }
   },
   "root": "root",
   "version": 7

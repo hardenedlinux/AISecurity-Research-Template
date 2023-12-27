@@ -18,7 +18,29 @@ jobs:
         with:
           SECRET_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: jupyenv-example
+      - name: Build Example
         run: |
-          nix profile install nixpkgs#tectonic
           nix develop ./nix/std -c just jupyterlab example build
+
+  quarto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: "recursive"
+
+      - name: Setup
+        uses: ./.github/actions/common-setup
+        with:
+          SECRET_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Render Quarto
+        run: |
+          nix develop ./nix/std -c just quarto example
+
+      - name: Deploy Github-Page
+        uses: JamesIves/github-pages-deploy-action@v4.4.3
+        with:
+          branch: github-page
+          folder: ./notebook/publish
