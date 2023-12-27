@@ -21,6 +21,11 @@ workflow: Workflow {
       style.multiple: true
     }
   }
+  jupyterlab: JupyterLab {
+    pythonKernel
+    juliaKernel
+    bashKernel
+  }
   portal: Online Portal {
     UI
   }
@@ -32,6 +37,7 @@ languages: Programming Languages {
   python
   julia
 }
+
 server: API Server
 
 user -> workflow.tower: Make call

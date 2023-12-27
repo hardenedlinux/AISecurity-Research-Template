@@ -1,11 +1,23 @@
-# Getting Started
+---
+title: Getting Started
+date: 2023-12-27
+---
 
-
+# Workflow
 
 ```{python kernel="python-data-science"}
 #| code-fold: true
 
 from IPython.core.display import SVG
+import os
 
+os.environ["PATH"] += os.pathsep + "$PATH"
 SVG(filename='flow.svg')
 ```
+
+
+
+# Acknowledgments
+
+- [Guidelines for secure AI system development
+](https://www.ncsc.gov.uk/collection/guidelines-secure-ai-system-development)
