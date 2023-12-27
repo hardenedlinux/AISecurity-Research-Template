@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "AISecurity-Research-Template",
+    "section": "",
+    "text": "1 Getting Started"
+  },
+  {
+    "objectID": "julia-test.html",
+    "href": "julia-test.html",
+    "title": "Julia Plots Test",
+    "section": "",
+    "text": "using Plots\n\n\ndisplay(plot([1,3,2]))\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nusing GLMakie # All functionality is defined in Makie and every backend re-exports Makie\n\nBase.@kwdef mutable struct Lorenz\n    dt::Float64 = 0.01\n    σ::Float64 = 10\n    ρ::Float64 = 28\n    β::Float64 = 8/3\n    x::Float64 = 1\n    y::Float64 = 1\n    z::Float64 = 1\nend\n\nfunction step!(l::Lorenz)\n    dx = l.σ * (l.y - l.x)\n    dy = l.x * (l.ρ - l.z) - l.y\n    dz = l.x * l.y - l.β * l.z\n    l.x += l.dt * dx\n    l.y += l.dt * dy\n    l.z += l.dt * dz\n    Point3f(l.x, l.y, l.z)\nend\n\nattractor = Lorenz()\n\npoints = Observable(Point3f[]) # Signal that can be used to update plots efficiently\ncolors = Observable(Int[])\n\nset_theme!(theme_black())\n\nfig, ax, l = lines(points, color = colors,\n    colormap = :inferno, transparency = true, \n    axis = (; type = Axis3, protrusions = (0, 0, 0, 0), \n              viewmode = :fit, limits = (-30, 30, -30, 30, 0, 50)))\n\nrecord(fig, \"lorenz.mp4\", 1:120) do frame\n    for i in 1:50\n        # update arrays inplace\n        push!(points[], step!(attractor))\n        push!(colors[], frame)\n    end\n    ax.azimuth[] = 1.7pi + 0.3 * sin(2pi * frame / 120) # set the view angle of the axis\n    notify(points); notify(colors) # tell points and colors that their value has been updated\n    l.colorrange = (0, frame) # update plot attribute directly\nend\n\n\"lorenz.mp4\"\n\n\n\nf = Figure()\nax = Axis(f[1, 1])\nx = range(0, 10, length=100)\ny = sin.(x)\nlines!(ax, x, y)\nf\n\n\n\n\n\nusing Base64\n\nfunction display_mp4(filename)\n    display(\"text/html\", string(\"\"\"&lt;video autoplay controls&gt;&lt;source src=\"data:video/x-m4v;base64,\"\"\",\n    Base64.base64encode(open(read,filename)),\"\"\"\" type=\"video/mp4\"&gt;&lt;/video&gt;\"\"\"))\nend\n\ndisplay_mp4 (generic function with 1 method)\n\n\n\ndisplay_mp4(\"lorenz.mp4\")"
+  },
+  {
+    "objectID": "python-test.html",
+    "href": "python-test.html",
+    "title": "OpenAIPy Test",
+    "section": "",
+    "text": "from scipy.special import comb\n\n\ncom = comb(5, 2, exact = False, repetition=True)\n\n\ncom\n\n15.0\n\n\n\nimport os\nfrom openai import OpenAI\n\nclient = OpenAI(api_key = os.getenv(\"OPENAI_API_KEY\"))\n\n\ncompletion = client.chat.completions.create(\n  model=\"gpt-4\",\n  messages=[\n    {\"role\": \"system\", \"content\": \"You are a Security Enginner\"},\n  ]\n)\n\n\ncompletion.choices[0].message\n\nChatCompletionMessage(content='As a Security Engineer, my primary responsibility is to ensure that the digital systems and data of an organization are safe from cyber threats. This involves creating new systems or upgrading existing ones to incorporate the latest security measures. I also take on tasks such as risk assessments, task automation, performance analysis, and system tests to identify any weak points.\\n\\nI constantly monitor our networks for any potential security breaches, implementing countermeasures when threats are detected. In addition, I also conduct regular security training for employees and consultations with management to update them about the state of our security landscape.\\n\\nMoreover, I also take on the task of incident response during security breaches, where I attempt to minimize damage and disruption to operations, and then perform a post-incident analysis to prevent any similar threats in the future.\\n\\nI also work with a team of IT professionals and other security engineers to enhance and maintain the overall infrastructure of the company. My ultimate goal is to ensure data and system integrity, confidentiality, and availability, which is crucial for the smooth operation of the company.', role='assistant', function_call=None, tool_calls=None)"
+  }
+]
