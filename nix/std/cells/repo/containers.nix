@@ -11,7 +11,7 @@ let
 in
 {
   dev = std.lib.ops.mkDevOCI {
-    name = "ghcr.io/hardendlinux/AISecurity-Research-Template";
+    name = "ghcr.io/hardenedlinux/AISecurity-Research-Template";
     tag = "latest";
     devshell = inputs.cells.repo.shells.default;
     preLoadStorePaths = [ ] ++ inputsPaths;

@@ -5,7 +5,7 @@ on:
     branches:
       - main
 jobs:
-  jupyenv:
+  Jupyenv:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +22,7 @@ jobs:
         run: |
           nix develop ./nix/std -c just jupyterlab example build
 
-  quarto:
+  Quarto:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,7 +45,7 @@ jobs:
           branch: github-page
           folder: ./notebook/publish
 
-  oci:
+  OCI:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -7,6 +7,17 @@ book:
   language: "en"
   author: "Guangtao Zhang"
   reader-mode: true
+  page-navigation: true
+  navbar:
+    collapse-below: lg
+    right:
+      - icon: github
+        href: https://github.com/hardenedlinux/AISecurity-Research-Template
+        aria-label: GitHub
+    left:
+      - text: "Overview"
+        href: index.qmd
+
   chapters:
     - index.qmd
 
@@ -15,6 +26,12 @@ book:
 
     - python.qmd
     - part: python-test.ipynb
+
+  # sidebar:
+    # tools:
+    #   - icon: github
+    #     href: https://github.com/hardenedlinux/AISecurity-Research-Template
+    #     text: AISecurity-Research-Template GitHub
 
 format:
   # gfm:
@@ -28,6 +45,7 @@ format:
 
   pdf:
     # documentclass: ctexbook
+    toc: true
     pdf-engine: tectonic
 
 execute:
