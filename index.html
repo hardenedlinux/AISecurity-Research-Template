@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Guangtao Zhang">
+<meta name="dcterms.date" content="2023-12-27">
 
 <title>AISecurity-Research-Template</title>
 <style>
@@ -176,7 +177,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link active" data-scroll-target="#getting-started"><span class="header-section-number">1</span> Getting Started</a></li>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link active" data-scroll-target="#workflow"><span class="header-section-number">1</span> Workflow</a></li>
+  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments"><span class="header-section-number">2</span> Acknowledgments</a></li>
   </ul>
 </nav>
     </div>
@@ -199,6 +201,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 27, 2023</p>
+    </div>
+  </div>
   
     
   </div>
@@ -206,19 +214,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="getting-started" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Getting Started</h1>
+<section id="workflow" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Workflow</h1>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.display <span class="im">import</span> SVG</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>SVG(filename<span class="op">=</span><span class="st">'flow.svg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>os.environ[<span class="st">"PATH"</span>] <span class="op">+=</span> os.pathsep <span class="op">+</span> <span class="st">"$PATH"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>SVG(filename<span class="op">=</span><span class="st">'flow.svg'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <p><img src="index_files/figure-html/cell-2-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
+</section>
+<section id="acknowledgments" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Acknowledgments</h1>
+<ul>
+<li><a href="https://www.ncsc.gov.uk/collection/guidelines-secure-ai-system-development">Guidelines for secure AI system development</a></li>
+</ul>
 
 
 </section>

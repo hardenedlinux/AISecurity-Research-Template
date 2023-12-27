@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "AISecurity-Research-Template",
     "section": "",
-    "text": "1 Getting Started\n\n\nCode\nfrom IPython.core.display import SVG\n\nSVG(filename='flow.svg')"
+    "text": "1 Workflow\n\n\nCode\nfrom IPython.core.display import SVG\nimport os\n\nos.environ[\"PATH\"] += os.pathsep + \"$PATH\"\nSVG(filename='flow.svg')\n\n\n\n\n\n\n\n2 Acknowledgments\n\nGuidelines for secure AI system development"
   },
   {
     "objectID": "julia-test.html",
