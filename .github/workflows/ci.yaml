@@ -44,3 +44,26 @@ jobs:
         with:
           branch: github-page
           folder: ./notebook/publish
+
+  oci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: "recursive"
+
+      - name: Setup
+        uses: ./.github/actions/common-setup
+        with:
+          SECRET_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: copy oci-image to the register
+        run: |
+          nix run ./nix/std#x86_64-linux.repo.containers.dev.out.copyToRegistry

@@ -17,9 +17,15 @@ book:
     - part: python-test.ipynb
 
 format:
+  # gfm:
+  #   keep-yaml: true
+  #   fig-format: svg
+  #   wrap: preserve
+
   html:
     theme: cosmo
     code-fold: true
+
   pdf:
     # documentclass: ctexbook
     pdf-engine: tectonic

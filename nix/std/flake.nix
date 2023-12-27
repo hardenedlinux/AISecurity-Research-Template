@@ -16,7 +16,15 @@
     nixpkgs.follows = "omnibusStd/nixpkgs";
     omnibusStd.url = "github:gtrunsec/omnibus/?dir=local";
     omnibus.url = "github:gtrunsec/omnibus";
-    std.follows = "omnibusStd/std";
+
+    std.url = "github:divnix/std";
+    std.inputs.nixpkgs.follows = "nixpkgs";
+    std.inputs.devshell.follows = "omnibusStd/devshell";
+    std.inputs.n2c.follows = "n2c";
+    std.inputs.nixago.follows = "omnibusStd/nixago";
+
+    n2c.url = "github:nlewo/nix2container";
+    n2c.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
     { std, omnibus, ... }@inputs:
@@ -55,6 +63,7 @@
           (functions "pops")
 
           (stdLib.blockTypes.jupyenv "jupyenv")
+          (containers "containers")
 
           (data "config")
           (files "configFiles")
