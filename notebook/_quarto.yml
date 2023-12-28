@@ -28,10 +28,10 @@ book:
     - part: python-test.ipynb
 
   # sidebar:
-    # tools:
-    #   - icon: github
-    #     href: https://github.com/hardenedlinux/AISecurity-Research-Template
-    #     text: AISecurity-Research-Template GitHub
+  # tools:
+  #   - icon: github
+  #     href: https://github.com/hardenedlinux/AISecurity-Research-Template
+  #     text: AISecurity-Research-Template GitHub
 
 format:
   # gfm:
@@ -40,13 +40,21 @@ format:
   #   wrap: preserve
 
   html:
-    theme: cosmo
+    theme: [cosmo, style.css]
+    code-overflow: wrap
     code-fold: true
+    css: style.css
+    link-external-icon: true
+    link-external-newwindow: true
 
   pdf:
     # documentclass: ctexbook
     toc: true
     pdf-engine: tectonic
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 
 execute:
   warning: false
