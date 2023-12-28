@@ -96,6 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -238,14 +239,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>completion <span class="op">=</span> client.chat.completions.create(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  model<span class="op">=</span><span class="st">"gpt-4"</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  messages<span class="op">=</span>[</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a Security Enginner"</span>},</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a Security Engineer.)"</span>},</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  ]</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>completion.choices[<span class="dv">0</span>].message</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>ChatCompletionMessage(content='As a Security Engineer, my primary responsibility is to ensure that the digital systems and data of an organization are safe from cyber threats. This involves creating new systems or upgrading existing ones to incorporate the latest security measures. I also take on tasks such as risk assessments, task automation, performance analysis, and system tests to identify any weak points.\n\nI constantly monitor our networks for any potential security breaches, implementing countermeasures when threats are detected. In addition, I also conduct regular security training for employees and consultations with management to update them about the state of our security landscape.\n\nMoreover, I also take on the task of incident response during security breaches, where I attempt to minimize damage and disruption to operations, and then perform a post-incident analysis to prevent any similar threats in the future.\n\nI also work with a team of IT professionals and other security engineers to enhance and maintain the overall infrastructure of the company. My ultimate goal is to ensure data and system integrity, confidentiality, and availability, which is crucial for the smooth operation of the company.', role='assistant', function_call=None, tool_calls=None)</code></pre>
+<div class="cell" data-scrolled="true" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> textwrap</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> wrap_text(text, width):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> text.split(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    wrapped_lines <span class="op">=</span> []</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> line <span class="kw">in</span> lines:</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(line) <span class="op">&gt;</span> width:</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            wrapped_lines.extend(textwrap.wrap(line, width<span class="op">=</span>width))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            wrapped_lines.append(line)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>.join(wrapped_lines)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(wrap_text(completion.choices[<span class="dv">0</span>].message.content,<span class="dv">70</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>As a Security Engineer, my primary responsibilities include:
+
+1. Developing and implementing security protocols and procedures
+across all IT departments.
+2. Regularly auditing the company’s systems and network, identifying
+possible threats or vulnerabilities.
+3. Ensuring data and network security are maintained at all times.
+4. Installing, configuring, and supporting security tools such as
+firewalls, anti-virus software, and patch management systems.
+5. Keeping abreast of the latest developments in IT security and
+ensuring that the organization responds swiftly to new security
+threats.
+6. Conducting both routine and irregular security checks for any
+possible network breach.
+7. Carrying out risk assessments and make recommendations for
+improvement.
+8. Ensuring compliance with relevant security-related regulations and
+protocols.
+9. Responding promptly and effectively to any security incidents.
+10. Providing training and guidance to colleagues on information
+security matters.
+11. Documenting any security breaches and assessment the damage they
+might have caused.
+12. Implementing strategies to lessen the risk of future security
+breaches.</code></pre>
 </div>
 </div>
 
@@ -483,6 +519,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
