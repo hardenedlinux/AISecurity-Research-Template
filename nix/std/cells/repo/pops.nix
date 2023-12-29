@@ -1,6 +1,6 @@
 { inputs, cell }:
 let
-  inherit (inputs) nixpkgs;
+  inherit (inputs) nixpkgs omnibus;
   inputs' = (inputs.omnibus.pops.flake.setSystem nixpkgs.system).inputs;
   inherit (inputs.omnibus.pops.self.load.inputs) POP flops;
 in
@@ -33,6 +33,17 @@ in
         inherit (inputs') nixfmt;
         inherit (inputs) std;
         inherit nixpkgs;
+      };
+    };
+  };
+
+  jupyenv = omnibus.pops.jupyenv.addLoadExtender {
+    load = {
+      src = ./jupyenv;
+      inputs = {
+        inputs = inputs // {
+          inherit (inputs') jupyenv nixpkgs;
+        };
       };
     };
   };

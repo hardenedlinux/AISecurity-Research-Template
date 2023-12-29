@@ -20,6 +20,7 @@ l.mapAttrs (_: std.lib.dev.mkShell) {
         nixpkgs.tectonic
         nixpkgs.d2
         nixpkgs.just
+        nixpkgs.which
       ] ++ inputs.main.devShells.default.buildInputs;
 
       commands = [

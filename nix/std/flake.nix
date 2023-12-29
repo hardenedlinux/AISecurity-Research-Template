@@ -78,5 +78,9 @@
           "repo"
           "shells"
         ];
+        packages = inputs.std.harvest inputs.self [
+          "repo"
+          "packages"
+        ];
       };
 }
