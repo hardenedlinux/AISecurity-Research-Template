@@ -2,12 +2,11 @@
 let
   inherit (inputs) std;
   l = inputs.nixpkgs.lib // builtins;
-  inputsPaths =
-    inputs.omnibus.lib.omnibus.inputsToPaths
-      [
-        # because it is not in the input closure of the derivation
-        inputs
-      ];
+  inputsPaths = inputs.omnibus.lib.omnibus.inputsToPaths [
+    # because it is not in the input closure of the derivation
+    inputs
+    (l.removeAttrs cell.pops.configs.load.inputs.inputs [ "self" ])
+  ];
 in
 {
   dev = std.lib.ops.mkDevOCI {

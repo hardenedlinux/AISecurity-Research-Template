@@ -19,9 +19,16 @@ l.mapAttrs (_: std.lib.dev.mkShell) {
       packages = [
         nixpkgs.tectonic
         nixpkgs.d2
+        nixpkgs.just
       ] ++ inputs.main.devShells.default.buildInputs;
 
       commands = [
+        {
+          name = "jupyenv";
+          category = "data-science";
+          command = cell.jupyenv.example.config.build + ''/bin/jupyter "$@"'';
+          help = "Run Jupyter env";
+        }
         {
           name = "std";
           help = std.packages.std.meta.description;
