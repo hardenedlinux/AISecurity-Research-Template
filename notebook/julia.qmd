@@ -1,2 +1,4 @@
 # Julia
 
+- https://julialang.org/
+- https://cn.julialang.org/

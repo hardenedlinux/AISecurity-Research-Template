@@ -21,11 +21,13 @@ book:
   chapters:
     - index.qmd
 
-    - julia.qmd
-    - part: julia-test.ipynb
+    - part: julia.qmd
+      chapters:
+        - julia-test.ipynb
 
-    - python.qmd
-    - part: python-test.ipynb
+    - part: python.qmd
+      chapters:
+        - python-test.ipynb
 
   # sidebar:
   # tools:

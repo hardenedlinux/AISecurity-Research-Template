@@ -37,7 +37,7 @@ jobs:
 
       - name: Render Quarto
         run: |
-          nix develop ./nix/std -c just quarto example
+          nix develop ./nix/std -c just quarto example render
 
       - name: Deploy Github-Page
         uses: JamesIves/github-pages-deploy-action@v4.4.3
