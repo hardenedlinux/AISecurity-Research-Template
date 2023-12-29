@@ -13,6 +13,7 @@ in
     name = "ghcr.io/hardenedlinux/AISecurity-Research-Template";
     tag = "latest";
     devshell = inputs.cells.repo.shells.default;
+    pkgs = [ ];
     preLoadStorePaths = [ ] ++ inputsPaths;
     labels = {
       title = "AISecurity-Research-Template";
