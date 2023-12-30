@@ -10,7 +10,7 @@ let
 in
 {
   dev = std.lib.ops.mkDevOCI {
-    name = "ghcr.io/hardenedlinux/AISecurity-Research-Template";
+    name = "ghcr.io/hardenedlinux/aisecurity-research-template";
     tag = "latest";
     devshell = inputs.cells.repo.shells.default;
     pkgs = [ ];
