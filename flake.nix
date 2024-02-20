@@ -3,6 +3,7 @@
 
   inputs = {
     dream2nix.url = "github:nix-community/dream2nix";
+    dream2nix.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
@@ -24,29 +25,25 @@
     {
       # All packages defined in ./packages/<name> are automatically added to the flake outputs
       # e.g., 'packages/hello/default.nix' becomes '.#packages.hello'
-      devShells = eachSystem (
-        system: {
-          default = self.packages.${system}.default.devShell;
-          std = std.devShells.${system}.default;
-        }
-      );
-      packages = eachSystem (
-        system: {
-          jupyenv-example = std.packages.${system}.example;
-          default = dream2nix.lib.evalModules {
-            packageSets.nixpkgs = inputs.nixpkgs.legacyPackages.${system};
-            modules = [
-              ./nix/my-project.nix
-              {
-                paths.projectRoot = ./.;
-                # can be changed to ".git" or "flake.nix" to get rid of .project-root
-                paths.projectRootFile = "flake.nix";
-                paths.package = "./my_project";
-              }
-            ];
-          };
-        }
-      );
+      devShells = eachSystem (system: {
+        default = self.packages.${system}.default.devShell;
+        std = std.devShells.${system}.default;
+      });
+      packages = eachSystem (system: {
+        jupyenv-example = std.packages.${system}.example;
+        default = dream2nix.lib.evalModules {
+          packageSets.nixpkgs = inputs.nixpkgs.legacyPackages.${system};
+          modules = [
+            ./nix/my-project.nix
+            {
+              paths.projectRoot = ./.;
+              # can be changed to ".git" or "flake.nix" to get rid of .project-root
+              paths.projectRootFile = "flake.nix";
+              paths.package = "./my_project";
+            }
+          ];
+        };
+      });
     };
   nixConfig = {
     extra-substituters = [

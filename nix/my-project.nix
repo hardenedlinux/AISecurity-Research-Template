@@ -22,7 +22,9 @@ in
       python = nixpkgs.python310;
       mkShell =
         let
-          pythonEnv = (config.deps.python.withPackages (ps: config.mkDerivation.propagatedBuildInputs));
+          pythonEnv = (
+            config.deps.python.withPackages (ps: config.mkDerivation.propagatedBuildInputs)
+          );
         in
         nixpkgs.mkShell {
           buildInputs = [

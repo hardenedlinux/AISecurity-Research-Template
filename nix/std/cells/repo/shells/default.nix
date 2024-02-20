@@ -23,20 +23,23 @@ l.mapAttrs (_: std.lib.dev.mkShell) {
         nixpkgs.which
       ] ++ inputs.main.devShells.default.buildInputs;
 
-      commands = [
-        {
-          name = "jupyenv";
-          category = "data-science";
-          command = cell.jupyenv.example.config.build + ''/bin/jupyter "$@"'';
-          help = "Run Jupyter env";
-        }
-        {
-          name = "std";
-          help = std.packages.std.meta.description;
-          command = ''
-            (cd $PRJ_ROOT/nix/std && ${std.packages.std}/bin/std "$@")
-          '';
-        }
-      ];
+      commands =
+        [
+          {
+            name = "std";
+            help = std.packages.std.meta.description;
+            command = ''
+              (cd $PRJ_ROOT/nix/std && ${std.packages.std}/bin/std "$@")
+            '';
+          }
+        ]
+        ++ nixpkgs.lib.optionals nixpkgs.pkgs.stdenv.isLinux [
+          {
+            name = "jupyenv";
+            category = "data-science";
+            command = cell.jupyenv.example.config.build + ''/bin/jupyter "$@"'';
+            help = "Run Jupyter env";
+          }
+        ];
     };
 }
