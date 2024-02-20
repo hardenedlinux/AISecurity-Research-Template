@@ -42,9 +42,9 @@
       {
         inputs =
           inputs
-          // ((omnibus.pops.flake.setInitInputs ../lock).inputs)
+          // ((omnibus.call-flake ../lock).inputs)
           // {
-            main = omnibus.inputs.flops.inputs.call-flake ../..;
+            main = omnibus.call-flake ../..;
           };
         cellsFrom = ./cells;
 
