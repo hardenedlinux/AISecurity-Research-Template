@@ -64,6 +64,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: build oci-image
+        run: |
+          nix build ./nix/std#x86_64-linux.repo.containers.dev.out
       - name: copy oci-image to the register
         run: |
           # nix run ./nix/std#x86_64-linux.repo.containers.dev.out.copyToRegistry
