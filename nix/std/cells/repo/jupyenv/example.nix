@@ -45,6 +45,7 @@ in
       "Plots"
       "GLMakie"
       "DataFrames"
+      "JSON3"
     ];
     extraKernelSpc = {
       env = {

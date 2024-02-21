@@ -15,26 +15,16 @@
   };
 
   inputs = {
-    nixpkgs.follows = "omnibusStd/nixpkgs";
-    omnibusStd.url = "github:gtrunsec/omnibus/?dir=local";
     omnibus.url = "github:gtrunsec/omnibus";
-
-    std.url = "github:divnix/std";
-    std.inputs.nixpkgs.follows = "nixpkgs";
-    std.inputs.devshell.follows = "omnibusStd/devshell";
-    std.inputs.n2c.follows = "n2c";
-    std.inputs.nixago.follows = "omnibusStd/nixago";
-
-    n2c.url = "github:nlewo/nix2container";
-    n2c.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
-    { std, omnibus, ... }@inputs:
+    { omnibus, ... }@inputs:
     let
+      inherit (omnibus.flake.inputs) std;
       stdLib =
         (omnibus.pops.std {
           inputs.inputs = {
-            inherit (inputs) std;
+            inherit std;
           };
         }).exports.default;
     in
@@ -42,9 +32,13 @@
       {
         inputs =
           inputs
-          // ((omnibus.call-flake ../lock).inputs)
           // {
+            inherit std;
+          }
+          // ((omnibus.call-flake ../lock).inputs)
+          // rec {
             main = omnibus.call-flake ../..;
+            nixpkgs = main.inputs.nixpkgs;
           };
         cellsFrom = ./cells;
 
@@ -74,11 +68,11 @@
         ];
       }
       {
-        devShells = inputs.std.harvest inputs.self [
+        devShells = std.harvest inputs.self [
           "repo"
           "shells"
         ];
-        packages = inputs.std.harvest inputs.self [
+        packages = std.harvest inputs.self [
           "repo"
           "packages"
         ];

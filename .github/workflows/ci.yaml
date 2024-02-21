@@ -58,7 +58,7 @@ jobs:
         with:
           SECRET_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/login-action@v3
+      - uses: docker/login-action@master
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -66,4 +66,5 @@ jobs:
 
       - name: copy oci-image to the register
         run: |
-          nix run ./nix/std#x86_64-linux.repo.containers.dev.out.copyToRegistry
+          # nix run ./nix/std#x86_64-linux.repo.containers.dev.out.copyToRegistry
+          nix run ./nix/std\#x86_64-linux.repo.containers.dev.out.copyTo -- docker://ghcr.io/hardenedlinux/aisecurity-research-template:latest

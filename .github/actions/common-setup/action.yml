@@ -9,6 +9,19 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: jlumbroso/free-disk-space@main
+      with:
+        # These 5 options give back ~32Gb. If that's not enough, the remaining flags can be set to `true` at the expense
+        # of this action taking longer to finish
+        android: true
+        dotnet: true
+        haskell: true
+        docker-images: true
+        swap-storage: true
+
+        large-packages: false
+        tool-cache: false
+
     - uses: DeterminateSystems/nix-installer-action@main
       with:
         extra-conf: |
