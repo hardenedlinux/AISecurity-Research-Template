@@ -16,6 +16,14 @@
 
   inputs = {
     omnibus.url = "github:gtrunsec/omnibus";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
+    stdN2c.url = "github:gtrunsec/std/mkDevOCI";
+    stdN2c.inputs.n2c.follows = "n2c";
+    stdN2c.inputs.nixpkgs.follows = "nixpkgs";
+
+    n2c.url = "github:nlewo/nix2container";
+    n2c.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
     { omnibus, ... }@inputs:

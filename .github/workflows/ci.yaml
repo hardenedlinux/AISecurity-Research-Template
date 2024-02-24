@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+env:
+  REGISTRY_USER: ${{ github.actor }}
+  REGISTRY_PASSWORD: ${{ github.token }}
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+
 jobs:
   Jupyenv:
     runs-on: ubuntu-latest
@@ -58,16 +63,17 @@ jobs:
         with:
           SECRET_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/login-action@master
+      - name: Log in to ghcr.io
+        uses: redhat-actions/podman-login@v1
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ env.REGISTRY_USER }}
+          password: ${{ env.REGISTRY_PASSWORD }}
+          registry: ${{ env.IMAGE_REGISTRY }}
 
       - name: build oci-image
         run: |
           nix build ./nix/std#x86_64-linux.repo.containers.dev.out
       - name: copy oci-image to the register
         run: |
-          # nix run ./nix/std#x86_64-linux.repo.containers.dev.out.copyToRegistry
-          nix run ./nix/std\#x86_64-linux.repo.containers.dev.out.copyTo -- docker://ghcr.io/hardenedlinux/aisecurity-research-template:latest
+          nix run ./nix/std#x86_64-linux.repo.containers.dev.out.copyToRegistry
+          # nix run ./nix/std\#x86_64-linux.repo.containers.dev.out.copyTo -- docker://ghcr.io/hardenedlinux/aisecurity-research-template:latest

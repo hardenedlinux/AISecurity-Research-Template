@@ -1,6 +1,6 @@
 { inputs, cell }:
 let
-  inherit (inputs) std;
+  inherit (inputs) std stdN2c;
   l = inputs.nixpkgs.lib // builtins;
   inputsPaths = inputs.omnibus.lib.omnibus.inputsToPaths [
     # because it is not in the input closure of the derivation
@@ -9,9 +9,11 @@ let
   ];
 in
 {
-  dev = std.lib.ops.mkDevOCI {
+  dev = stdN2c.lib.ops.mkDevOCI {
     name = "ghcr.io/hardenedlinux/aisecurity-research-template";
     tag = "latest";
+    # avoid missing hash in github action
+    reproducible = false;
     devshell = inputs.cells.repo.shells.default;
     pkgs = [ ];
     preLoadStorePaths = [ ] ++ inputsPaths;
