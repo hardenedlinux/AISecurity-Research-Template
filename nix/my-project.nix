@@ -16,27 +16,19 @@ in
     inherit src;
     buildInputs = [ config.deps.python.pkgs.pdm-backend ];
   };
+  buildPythonPackage.catchConflicts = false;
   deps =
     { nixpkgs, ... }:
     {
       python = nixpkgs.python310;
-      mkShell =
-        let
-          pythonEnv = (
-            config.deps.python.withPackages (ps: config.mkDerivation.propagatedBuildInputs)
-          );
-        in
-        nixpkgs.mkShell {
-          buildInputs = [
-            nixpkgs.pdm
-            pythonEnv
-          ];
-          passthru = {
-            inherit pythonEnv;
-          };
-        };
     };
   public = {
-    devShell = config.deps.mkShell;
+    # devShell = config.deps.mkShell;
+    devShellNew = config.public.devShell.overrideAttrs (old: {
+      buildInputs = old.buildInputs ++ [ packageSets.nixpkgs.pdm ];
+    });
+    env = config.deps.python.withPackages (
+      ps: config.mkDerivation.propagatedBuildInputs
+    );
   };
 }

@@ -24,7 +24,7 @@ in
     #   pkgs.bashInteractive
     #   pkgs.d2
     # ];
-    env = inputs.main.devShells.default.passthru.pythonEnv;
+    env = inputs.main.packages.default.env;
   };
   kernel.bash.data-science = {
     enable = true;

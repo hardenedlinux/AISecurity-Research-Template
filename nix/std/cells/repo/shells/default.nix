@@ -37,7 +37,14 @@ l.mapAttrs (_: std.lib.dev.mkShell) {
           {
             name = "jupyenv";
             category = "data-science";
-            command = cell.jupyenv.example.config.build + ''/bin/jupyter "$@"'';
+            command = ''
+              if [[ "$HOME" == "/home/user" ]]; then
+              # Running in a container
+              (cd $HOME && ${cell.jupyenv.example.config.build + /bin/jupyter} "$@")
+              else
+              ${cell.jupyenv.example.config.build + /bin/jupyter} "$@"
+              fi
+            '';
             help = "Run Jupyter env";
           }
         ];

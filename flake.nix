@@ -26,7 +26,7 @@
       # All packages defined in ./packages/<name> are automatically added to the flake outputs
       # e.g., 'packages/hello/default.nix' becomes '.#packages.hello'
       devShells = eachSystem (system: {
-        default = self.packages.${system}.default.devShell;
+        default = self.packages.${system}.default.devShellNew;
         std = std.devShells.${system}.default;
       });
       packages = eachSystem (system: {

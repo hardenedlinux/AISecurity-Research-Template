@@ -21,7 +21,16 @@
     { omnibus, ... }@inputs:
     let
       inherit (omnibus.flake.inputs) std;
-      stdLib =
+      inputsSource =
+        inputs
+        // (omnibus.call-flake ../lock).inputs
+        // rec {
+          inherit std;
+          main = omnibus.call-flake ../..;
+          nixpkgs = main.inputs.nixpkgs;
+        };
+
+      omnibusStd =
         (omnibus.pops.std {
           inputs.inputs = {
             inherit std;
@@ -30,16 +39,7 @@
     in
     std.growOn
       {
-        inputs =
-          inputs
-          // {
-            inherit std;
-          }
-          // ((omnibus.call-flake ../lock).inputs)
-          // rec {
-            main = omnibus.call-flake ../..;
-            nixpkgs = main.inputs.nixpkgs;
-          };
+        inputs = inputsSource;
         cellsFrom = ./cells;
 
         cellBlocks = with std.blockTypes; [
@@ -58,7 +58,7 @@
 
           (functions "pops")
 
-          (stdLib.blockTypes.jupyenv "jupyenv")
+          (omnibusStd.blockTypes.jupyenv "jupyenv")
           (containers "containers")
 
           (data "config")
