@@ -64,7 +64,7 @@
 
           (functions "packages")
 
-          (functions "pops")
+          (functions "pops" // { cli = false; })
 
           (omnibusStd.blockTypes.jupyenv "jupyenv")
           (containers "containers")
